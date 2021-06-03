@@ -1,0 +1,7 @@
+*.tfstate*
+.fmt
+.terraform
+.terraform-plugins
+.terraform.lock.hcl
+.terraformrc
+.validate
