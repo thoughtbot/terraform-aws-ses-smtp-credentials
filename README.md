@@ -60,7 +60,7 @@ rotating SMTP credentials from a dedicated IAM user.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_policies"></a> [policies](#output\_policies) | Required IAM policies |
+| <a name="output_policy_json"></a> [policy\_json](#output\_policy\_json) | Required IAM policies |
 | <a name="output_secret_arn"></a> [secret\_arn](#output\_secret\_arn) | ARN of the secrets manager secret containing credentials |
 | <a name="output_secret_name"></a> [secret\_name](#output\_secret\_name) | Name of the secrets manager secret containing credentials |
 <!-- END_TF_DOCS -->

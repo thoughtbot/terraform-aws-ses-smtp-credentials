@@ -1,6 +1,6 @@
-output "policies" {
+output "policy_json" {
   description = "Required IAM policies"
-  value       = [module.secret.policy_arn]
+  value       = module.secret.policy_json
 }
 
 output "secret_arn" {
