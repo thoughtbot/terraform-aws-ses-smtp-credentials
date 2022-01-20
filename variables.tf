@@ -1,3 +1,9 @@
+variable "admin_principals" {
+  description = "Principals allowed to peform admin actions (default: current account)"
+  type        = list(string)
+  default     = null
+}
+
 variable "domain" {
   type        = string
   description = "The domain from which emails are sent"
@@ -20,9 +26,9 @@ variable "identity_account_id" {
   default     = null
 }
 
-variable "trust_principal" {
-  description = "Principal allowed to access the secret (default: current account)"
-  type        = string
+variable "read_principals" {
+  description = "Principals allowed to read the secret (default: current account)"
+  type        = list(string)
   default     = null
 }
 

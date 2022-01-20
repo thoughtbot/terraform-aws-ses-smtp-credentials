@@ -24,11 +24,12 @@ data "aws_iam_policy_document" "send_mail" {
 module "secret" {
   source = "../generic-secret"
 
-  description     = "SMTP username and password for ${var.name}"
-  name            = "${var.name}-credentials"
-  resource_tags   = var.tags
-  trust_principal = var.trust_principal
-  trust_tags      = var.trust_tags
+  admin_principals = var.admin_principals
+  description      = "SMTP username and password for ${var.name}"
+  name             = "${var.name}-credentials"
+  read_principals  = var.read_principals
+  resource_tags    = var.tags
+  trust_tags       = var.trust_tags
 
   initial_value = jsonencode({
     AWS_SES_SOURCE_ARN = local.ses_identity_arn
