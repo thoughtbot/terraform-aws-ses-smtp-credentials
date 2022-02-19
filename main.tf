@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "send_mail" {
 }
 
 module "secret" {
-  source = "../generic-secret"
+  source = "github.com/thoughtbot/terraform-aws-secrets//secret?ref=v0.1.0"
 
   admin_principals = var.admin_principals
   description      = "SMTP username and password for ${var.name}"
@@ -45,7 +45,7 @@ module "secret" {
 }
 
 module "rotation" {
-  source = "../secret-rotation-function"
+  source = "github.com/thoughtbot/terraform-aws-secrets//secret-rotation-function?ref=v0.1.0"
 
   handler            = "lambda_function.lambda_handler"
   role_arn           = module.secret.rotation_role_arn

@@ -6,6 +6,30 @@ SMTP usernames and passwords for SES require creating an IAM user and access
 key. This module will create a Secrets Manager secret and populate it with
 rotating SMTP credentials from a dedicated IAM user.
 
+Example:
+
+``` terraform
+module "ses_smtp" {
+  source = "github.com/thoughtbot/terraform-ses-smtp-credentials?ref=v0.1.0"
+
+  # The domain corresponding to your domain identity
+  domain          = "example.com"
+
+  # The name of the secret to create
+  name = "example-production-smtp"
+
+  # The principal allowed to access this secret from the resource policy
+  trust_principal = module.role.arn
+
+  # Fill in details for your VPC
+  subnet_ids = data.aws_subnet.private.*.id
+  vpc_id     = data.aws_vpc.this.id
+}
+```
+
+The outputs include `policy_json`, which is an IAM policy allowing access to the
+secret. You can add this to an IAM role or policy.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -24,8 +48,8 @@ rotating SMTP credentials from a dedicated IAM user.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_rotation"></a> [rotation](#module\_rotation) | ../secret-rotation-function |  |
-| <a name="module_secret"></a> [secret](#module\_secret) | ../generic-secret |  |
+| <a name="module_rotation"></a> [rotation](#module\_rotation) | github.com/thoughtbot/terraform-aws-secrets//secret-rotation-function?ref=v0.1.0 |  |
+| <a name="module_secret"></a> [secret](#module\_secret) | github.com/thoughtbot/terraform-aws-secrets//secret?ref=v0.1.0 |  |
 
 ## Resources
 
