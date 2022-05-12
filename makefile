@@ -30,7 +30,7 @@ lint: .lint
 	@touch .lintinit
 
 README.md: $(MODULEFILES)
-	terraform-docs markdown table . --output-file README.md
+	terraform-docs markdown table . --output-file README.md --lockfile=false
 
 .fmt: $(MODULEFILES)
 	terraform fmt -check
