@@ -59,9 +59,13 @@ module "rotation" {
 
 resource "aws_security_group" "function" {
   description = "Security group for rotation ${var.name} credentials"
-  name        = "${var.name}-rotation"
+  name_prefix = "${var.name}-rotation"
   tags        = var.tags
   vpc_id      = var.vpc_id
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_security_group_rule" "function_egress" {
