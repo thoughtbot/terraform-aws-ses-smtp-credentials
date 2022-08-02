@@ -10,16 +10,13 @@ Example:
 
 ``` terraform
 module "ses_smtp" {
-  source = "github.com/thoughtbot/terraform-ses-smtp-credentials?ref=v0.1.0"
+  source = "github.com/thoughtbot/terraform-aws-ses-smtp-credentials?ref=v0.2.0"
 
   # The domain corresponding to your domain identity
   domain          = "example.com"
 
   # The name of the secret to create
   name = "example-production-smtp"
-
-  # The principal allowed to access this secret from the resource policy
-  trust_principal = module.role.arn
 
   # Fill in details for your VPC
   subnet_ids = data.aws_subnet.private.*.id
