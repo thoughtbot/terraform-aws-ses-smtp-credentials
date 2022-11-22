@@ -51,7 +51,7 @@ module "rotation" {
   role_arn           = module.secret.rotation_role_arn
   runtime            = "python3.8"
   secret_arn         = module.secret.arn
-  security_group_ids = [aws_security_group.function.id]
+  security_group_ids = length(var.subnet_ids) > 0 ? [aws_security_group.function.id] : []
   source_file        = "${path.module}/rotation/lambda_function.py"
   subnet_ids         = var.subnet_ids
   variables          = { USERNAME = aws_iam_user.mail.name }
