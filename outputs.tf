@@ -1,3 +1,8 @@
+output "smtp_user_name" {
+  description = "IAM user name of the SMTP user"
+  value       = aws_iam_user.mail.name
+}
+
 output "policy_json" {
   description = "Required IAM policies"
   value       = module.secret.policy_json
