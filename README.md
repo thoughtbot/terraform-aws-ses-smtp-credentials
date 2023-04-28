@@ -85,4 +85,5 @@ secret. You can add this to an IAM role or policy.
 | <a name="output_policy_json"></a> [policy\_json](#output\_policy\_json) | Required IAM policies |
 | <a name="output_secret_arn"></a> [secret\_arn](#output\_secret\_arn) | ARN of the secrets manager secret containing credentials |
 | <a name="output_secret_name"></a> [secret\_name](#output\_secret\_name) | Name of the secrets manager secret containing credentials |
+| <a name="output_smtp_user_name"></a> [smtp\_user\_name](#output\_smtp\_user\_name) | IAM user name of the SMTP user |
 <!-- END_TF_DOCS -->
