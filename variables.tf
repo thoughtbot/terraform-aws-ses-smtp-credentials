@@ -41,9 +41,11 @@ variable "trust_tags" {
 variable "subnet_ids" {
   description = "Subnets in which the rotation function should run"
   type        = list(string)
+  default     = []
 }
 
 variable "vpc_id" {
   description = "VPC in which the rotation function should run"
   type        = string
+  default     = null
 }

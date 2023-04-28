@@ -51,13 +51,15 @@ module "rotation" {
   role_arn           = module.secret.rotation_role_arn
   runtime            = "python3.8"
   secret_arn         = module.secret.arn
-  security_group_ids = [aws_security_group.function.id]
+  security_group_ids = aws_security_group.function[*].id
   source_file        = "${path.module}/rotation/lambda_function.py"
   subnet_ids         = var.subnet_ids
   variables          = { USERNAME = aws_iam_user.mail.name }
 }
 
 resource "aws_security_group" "function" {
+  count = var.vpc_id == null ? 0 : 1
+
   description = "Security group for rotation ${var.name} credentials"
   name_prefix = "${var.name}-rotation"
   tags        = var.tags
@@ -69,11 +71,13 @@ resource "aws_security_group" "function" {
 }
 
 resource "aws_security_group_rule" "function_egress" {
+  count = var.vpc_id == null ? 0 : 1
+
   cidr_blocks       = ["0.0.0.0/0"]
   description       = "Allow all egress"
   from_port         = 0
   protocol          = "-1"
-  security_group_id = aws_security_group.function.id
+  security_group_id = aws_security_group.function[count.index].id
   to_port           = 0
   type              = "egress"
 }
