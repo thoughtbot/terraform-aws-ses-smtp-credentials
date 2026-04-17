@@ -4,6 +4,15 @@ variable "admin_principals" {
   default     = null
 }
 
+variable "replica_regions" {
+  description = "List of regions to replicate the secret to"
+  type = list(object({
+    region     = string
+    kms_key_id = optional(string)
+  }))
+  default = []
+}
+
 variable "domain" {
   type        = string
   description = "The domain from which emails are sent"
